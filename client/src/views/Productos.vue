@@ -47,6 +47,7 @@ const EstaAbierto = ref(false)
         width: 500px;
         height: 500px;
         border-color: black;
+        border-radius: 10px;
     }
 
     .v-enter-active,

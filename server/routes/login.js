@@ -31,14 +31,8 @@ router.post('/', async(req, res) => {
             
         }
 
-        let token = jwt.sign({
-            data: usuario_buscado
-        }, 'secret', { expiresIn: 60}) // 60 * 60 * 24 * 1
-        console.log(token)
-
         return res.json({
             usuario_buscado,
-            token: token
         })
       
     } catch (error) {
@@ -47,7 +41,6 @@ router.post('/', async(req, res) => {
         error
       });
     }
-  
   });
 
 module.exports = router;
