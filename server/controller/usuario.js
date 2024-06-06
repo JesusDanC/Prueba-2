@@ -49,7 +49,7 @@ const Actualizar_usuarios = async ( req, res = response) => {
     console.log(nombre);
 
     try {
-        const usuario_buscado = await modelo_usuario.findOne(nombre);
+        const usuario_buscado = await modelo_usuario.findOne({nombre});
 
         if(!usuario_buscado) {
             return res.status(404).json({
@@ -75,7 +75,7 @@ const Actualizar_usuarios = async ( req, res = response) => {
         const encriptar = bcrypt.genSaltSync(10);
         campos.pin = bcrypt.hashSync(campos.pin, encriptar);
 
-        const usuarioActualizado = await modelo_usuario.findOneAndUpdate(nombre, campos, { new: true });
+        const usuarioActualizado = await modelo_usuario.findOneAndUpdate({nombre}, campos, { new: true });
         res.json({
             ok:true,
             modelo_usuario: usuarioActualizado
@@ -94,7 +94,7 @@ const Borrar_usuarios = async (req, res = response) => {
     const nombre = req.params.id;
     
     try {
-        const usuario_buscado = await modelo_usuario.findOne(nombre);
+        const usuario_buscado = await modelo_usuario.findOne({nombre});
 
         if( !usuario_buscado ){
             return res.status(400).json({
@@ -103,7 +103,7 @@ const Borrar_usuarios = async (req, res = response) => {
             });
         }
 
-        await modelo_usuario.findOneAndDelete(nombre);
+        await modelo_usuario.findOneAndDelete({nombre});
         
         res.json({
             ok: true, 

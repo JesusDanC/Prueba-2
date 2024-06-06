@@ -4,14 +4,15 @@ import Form from '../views/Form.vue'
 import Table from '../views/Table.vue'
 import Modal from '../views/Modal.vue'
 import Usuarios from '../views/Usuarios.vue'
+import Login from '../App.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/Home',
-      name: 'Home',
-      component: Home
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/Form',
