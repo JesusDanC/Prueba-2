@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }))
 conexion_base_datos();
 
 app.use('/api/usuarios', require('./routes/usuario'));
+app.use('/api/productos', require('./routes/productos'));
 app.use('/api/login', require('./routes/login'));
 
 app.get('/', (req, res) => {

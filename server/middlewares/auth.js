@@ -13,7 +13,6 @@ const verificarAuth = (req, res, next) => {
         }
         
         req.usuario = decoded.data; 
-        next();
     });
 }
 
@@ -26,10 +25,6 @@ const verificarRol = (req, res, next) => {
             mensaje: 'Rol no autorizado!'
         });
     }
-
-    next();
 }
   
 module.exports = {verificarAuth, verificarRol};
-//
-  

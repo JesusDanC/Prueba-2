@@ -1,17 +1,17 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { Ver_usuarios, Crear_usuarios, Actualizar_usuarios, Borrar_usuarios } = require('../controller/usuario');
-const {verificarAuth, verificarRol} = require('../middlewares/auth');
+const { Ver_productos, Crear_productos, Actualizar_productos, Borrar_productos } = require('../controller/productos');
+const {verificarAuth} = require('../middlewares/auth');
 
 const router = Router();
 
-router.get('/', Ver_usuarios, verificarAuth);
+router.get('/', Ver_productos, verificarAuth);
 
 router.post('/', [
         check('nombre', 'Este campo es obligatorio').not().isEmpty(),
         check('pin', 'Este campo es obligatorio').not().isEmpty()
     ], 
-    Crear_usuarios, verificarAuth
+    Crear_productos, verificarAuth
 );
 
 router.put('/:id',
@@ -19,11 +19,11 @@ router.put('/:id',
         check('nombre', 'Este campo es obligatorio').not().isEmpty(),
         check('pin', 'Este campo es obligatorio').not().isEmpty()
     ],
-    Actualizar_usuarios, verificarAuth
+    Actualizar_productos, verificarAuth
 );
 
 router.delete('/:id',
-    Borrar_usuarios, verificarAuth
+    Borrar_productos, verificarAuth
 );
 
 module.exports = router;
