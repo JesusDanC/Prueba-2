@@ -46,7 +46,6 @@ const Crear_usuarios = async(req, res) => {
 
 const Actualizar_usuarios = async ( req, res = response) => {
     const nombre = req.params.id;
-    console.log(nombre);
 
     try {
         const usuario_buscado = await modelo_usuario.findOne({nombre});

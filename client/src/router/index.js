@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Form from '../views/Form.vue'
 import Table from '../views/Table.vue'
-import Modal from '../views/Modal.vue'
 import Usuarios from '../views/Usuarios.vue'
 import Login from '../App.vue'
 
