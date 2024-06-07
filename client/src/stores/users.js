@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', {
     },
     async updateUser(id, user) {
       const response = await apiUser.updateUser(id, user);
-      const index = this.users.findIndex(u => u.id === id);
+      const index = this.users.users.findIndex(u => u.id === id);
       if (index !== -1) {
         this.users.splice(index, 1, response.data);
       }

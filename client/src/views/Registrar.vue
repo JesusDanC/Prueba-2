@@ -20,7 +20,10 @@ export default {
         userPassword: userPassword.value
       };
       userStore.createUser(user);
-      Login();
+      userFirstName.value = '';
+      userLastName.value = '';
+      userEmail.value = ''
+      userPassword.value = ''
     };
 
     const Login = () => {
