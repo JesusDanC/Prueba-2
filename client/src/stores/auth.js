@@ -6,10 +6,11 @@ export const useAuthStore = defineStore('auth', () => {
     const user = ref(null);
     const error = ref(null);
 
-    const loginUser = async (nombre, pin) => {
+    const loginUser = async (userEmail, userPassword) => {
         try {
-            const data = await login(nombre, pin);
-            user.value = data.usuario_buscado;
+            const data = await login(userEmail, userPassword);
+            user.value = data.data;
+            console.log(data.data)
             error.value = null;
         } catch (err) {
             error.value = err.mensaje || 'Error al iniciar sesión';

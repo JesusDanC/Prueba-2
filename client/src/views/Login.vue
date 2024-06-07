@@ -7,13 +7,13 @@ export default {
   setup() {
     const router = useRouter();
     const authStore = useAuthStore();
-    const nombre = ref('');
-    const pin = ref('');
+    const userEmail = ref('');
+    const userPassword = ref('');
     const { error, loginUser } = authStore;
     
 
     const handleSubmit = async () => {
-      await loginUser(nombre.value, pin.value);
+      await loginUser(userEmail.value, userPassword.value);
       router.push('/Home')
     };
 
@@ -22,8 +22,8 @@ export default {
     }
 
     return {
-      nombre,
-      pin,
+      userEmail,
+      userPassword,
       error,
       handleSubmit,
       Registrar
@@ -38,12 +38,12 @@ export default {
         <h2>Iniciar Sesión</h2>
         <form @submit.prevent="handleSubmit">
         <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" v-model="nombre" required>
+            <label for="email">Email:</label>
+            <input type="text" v-model="userEmail" required>
         </div>
         <div>
-            <label for="pin">Contraseña:</label>
-            <input type="password" v-model="pin" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" v-model="userPassword" required>
         </div>
         <button type="submit">Iniciar Sesión</button>
         <p v-if="error">{{ error }}</p>

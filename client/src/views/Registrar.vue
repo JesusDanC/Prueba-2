@@ -1,38 +1,37 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import UserService from '../services/usuarios.js';
+import { useUserStore } from '../stores/users.js';
 
-const router = useRouter();
 export default {
   setup() {
     const router = useRouter();
-    const nombre = ref('');
-    const pin = ref('');
-    const error = ref(null);
+    const userStore = useUserStore();
+    const userFirstName = ref('');
+    const userLastName = ref('');
+    const userEmail = ref('');
+    const userPassword = ref('');
 
-    const handleSubmit = async () => {
-      try {
-        await UserService.crearUsuario({
-          nombre: nombre.value,
-          pin: pin.value
-        });
-        router.push('/Login');
-      } catch (error) {
-        error.value = error.message || 'Error al registrar usuario';
-      }
+    const addUser = () => {
+      const user = { 
+        userFirstName: userFirstName.value, 
+        userLastName: userLastName.value, 
+        userEmail: userEmail.value, 
+        userPassword: userPassword.value
+      };
+      userStore.createUser(user);
     };
 
-    const Login = async () => {
-        router.push('/Login');
+    const Login = () => {
+      router.push("/Login")
     }
 
     return {
-      nombre,
-      pin,
-      error,
-      handleSubmit,
-      Login
+      userFirstName,
+      userLastName,
+      userEmail,
+      userPassword,
+      addUser
     };
   }
 };
@@ -43,17 +42,12 @@ export default {
     <br>
     <div class="container">
         <h2>Registro</h2>
-        <form @submit.prevent="handleSubmit">
-        <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" v-model="nombre" required>
-        </div>
-        <div>
-            <label for="pin">Contraseña:</label>
-            <input type="password" v-model="pin" required>
-        </div>
-        <button type="submit">Registrarse</button>
-        <p v-if="error">{{ error }}</p>
+        <form @submit.prevent="addUser">
+          <input v-model="userFirstName" placeholder="Nombre" />
+          <input v-model="userLastName" placeholder="Apellido" />
+          <input v-model="userEmail" placeholder="Email" />
+          <input v-model="userPassword" placeholder="Contraseña" />
+          <button type="submit">Agregar usuario</button>
         </form>
         <br>
         <button @click.prevent="Login">Login</button>

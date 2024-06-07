@@ -1,15 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+require('dotenv').config()
 
-const conexion_base_datos = async () => {
+const dbURL = process.env.DB_URL;
+const dbConnection = async () => {
+    try{
+        await mongoose.connect(dbURL);
 
-    try {
-        await mongoose.connect(process.env.DB_CNN, {});
-        console.log("Bases de datos Online");
-    } catch (error) {
-        console.error('No se puede conectar a la BDD', error.message);
+        console.log ("Base de datos online");
     }
-}
+    
+    catch(error){
+        console.log(error);
+        throw new Error("Error a la hora de iniciar la base de datos");
+    }
+} 
 
-module.exports = {
-    conexion_base_datos
-}
+module.exports = {dbConnection};
