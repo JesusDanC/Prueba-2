@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', {
     },
     async createUser(user) {
       const response = await apiUser.createUser(user);
-      this.users.push(response.data);
+      this.users.push(response.users);
     },
     async updateUser(id, user) {
       const response = await apiUser.updateUser(id, user);
