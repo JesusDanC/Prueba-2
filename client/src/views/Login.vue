@@ -33,26 +33,72 @@ export default {
 </script>
 
 <template>
-    <br>
-    <div class="container">
-        <h2>Iniciar Sesión</h2>
-        <form @submit.prevent="handleSubmit">
-        <div>
-            <label for="email">Email:</label>
-            <input type="text" v-model="userEmail" required>
-        </div>
-        <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" v-model="userPassword" required>
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-        <p v-if="error">{{ error }}</p>
+    <form class="login-form"  @submit.prevent="handleSubmit">  
+          <div class="mb-3" >
+            <label class="login-label" for="Email">Correo Electronico</label>
+            <input class="login-input" id="Email" type="email" v-model="userEmail" required/>
+          </div>
+          <div class="mb-3">
+            <label class="login-label" for="Password">Contraseña </label>
+            <input class="login-input" id="password" type="password" v-model="userPassword" required/>
+          </div>
+          <button class="login-button btn btn-outline-dark" type="submit">
+            Login
+          </button>
+
+          <RouterLink class="create-account" to="/Registrar">Crear cuenta</RouterLink>
         </form>
-        <br>
-        <button @click="Registrar">Registrar</button>
-    </div>
 </template>
 
 <style>
+.login-form {
+  font-family:'Times New Roman', Times, serif;
+  color: #ffffff;
+  max-width: 400px;
+  margin: 90px auto;
+  padding: 60px;
+  border: 2px solid #4f4fff;
+  background: linear-gradient(to left, hsla(256, 73%, 51%, 0.823), #b14ff3bb);
+  border-radius: 5px;
+  background-size: cover;
+  box-shadow: 40px 30px 50px rgba(0, 0, 0, 0.1);
+}
 
+.mb-3 {
+  margin-bottom: 55px;
+}
+
+.login-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif; 
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: rgb(34, 1, 36);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #80a7d1;
+ 
+}
+
+.create-account {
+  position: center; 
+  color: #ffffff; 
+  font-weight: bold; 
+  text-decoration: underline; 
+}
 </style>

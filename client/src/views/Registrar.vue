@@ -26,17 +26,12 @@ export default {
       userPassword.value = ''
     };
 
-    const Login = () => {
-      router.push("/Login")
-    }
-
     return {
       userFirstName,
       userLastName,
       userEmail,
       userPassword,
       addUser,
-      Login
     };
   }
 };
@@ -44,19 +39,32 @@ export default {
 </script>
 
 <template>
-    <br>
-    <div class="container">
-        <h2>Registro</h2>
-        <form @submit.prevent="addUser">
-          <input v-model="userFirstName" placeholder="Nombre" />
-          <input v-model="userLastName" placeholder="Apellido" />
-          <input v-model="userEmail" placeholder="Email" />
-          <input v-model="userPassword" placeholder="Contraseña" />
-          <button type="submit">Agregar usuario</button>
+  <form name="login-form" class="login-form"  @submit.prevent="addUser">  
+          <div class="mb-3">
+            <label for="Nombre" class="login-label">Primer Nombre </label>
+            <input class="login-input" id="Nombre" type="text" v-model="userFirstName" placeholder="Nombre"/>
+          </div>
+          <div class="mb-3">
+            <label for="Apellido" class="login-label">Primer Apellido</label>
+            <input class="login-input" id="Apellido" type="text" v-model="userLastName" placeholder="Apellido"/>
+          </div>
+          <div class="mb-3">
+                <label for="Email" class="login-label">Correo Electronico</label>
+                <input class="login-input" id="Email" type="text" v-model="userEmail" placeholder="Email"/>
+            </div>
+          <div class="mb-3"> 
+                <label for="Password" class="login-label">Contraseña</label>
+                <input class="login-input" id="Password" type="password" v-model="userPassword" placeholder="Contraseña"/>
+            </div>
+
+          <button class="login-button btn btn-outline-dark" type="submit">
+            Registrarse
+          </button>
+        
+          <RouterLink class="create-account" to="/Login">Ya tengo una cuenta</RouterLink>
         </form>
-        <br>
-        <button @click.prevent="Login">Login</button>
-    </div>
+
+
 </template>
 
 <style>
