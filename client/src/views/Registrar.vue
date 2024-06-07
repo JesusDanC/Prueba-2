@@ -11,7 +11,7 @@ export default {
     const userLastName = ref('');
     const userEmail = ref('');
     const userPassword = ref('');
-
+    
     const addUser = () => {
       const user = { 
         userFirstName: userFirstName.value, 
@@ -20,6 +20,7 @@ export default {
         userPassword: userPassword.value
       };
       userStore.createUser(user);
+      Login();
     };
 
     const Login = () => {
@@ -31,7 +32,8 @@ export default {
       userLastName,
       userEmail,
       userPassword,
-      addUser
+      addUser,
+      Login
     };
   }
 };
